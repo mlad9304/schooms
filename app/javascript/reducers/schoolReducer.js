@@ -1,7 +1,7 @@
 import { SET_SCHOOL_TITLE } from '../constants/actionTypes';
 
 const initState = {
-    schoolTitle: ''
+    schoolTitle: 'No data'
 }
 
 export default (state = initState, action) => {

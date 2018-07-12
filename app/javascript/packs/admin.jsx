@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import adminStore from '../stores/adminStore';
+import TopBar from '../containers/TopBar';
 
 class App extends Component {
   render() {
-    return <div>Hello!</div>
+    return <TopBar />
   }
 }
 

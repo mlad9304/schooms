@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import schoolReducer from '../reducers/schoolReducer';
 
 const rootReducer = combineReducers({
-    schoolReducer
+    school: schoolReducer
 });
 
 export default createStore(
@@ -13,4 +13,3 @@ export default createStore(
         applyMiddleware(thunk)
     )
 );
-
