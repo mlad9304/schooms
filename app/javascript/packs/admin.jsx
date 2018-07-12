@@ -1,22 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
+import { Provider } from 'react-redux'
+import adminStore from '../stores/adminStore';
 
-const Hello = props => (
-  <div>Hello {props.name}!</div>
-)
-
-Hello.defaultProps = {
-  name: 'David'
-}
-
-Hello.propTypes = {
-  name: PropTypes.string
+class App extends Component {
+  render() {
+    return <div>Hello!</div>
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Hello name="React" />,
+    <Provider store={adminStore}>
+      <App />
+    </Provider>,
     document.getElementById('app'),
   )
 })
