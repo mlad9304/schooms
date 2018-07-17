@@ -9,6 +9,7 @@ gem 'puma', '~> 3.11'
 gem 'webpacker'
 gem 'jbuilder', '~> 2.5'
 gem "rails-settings-cached"
+gem 'wisper', '2.0.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -24,6 +25,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.7'
+  gem 'wisper-rspec', require: false
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
