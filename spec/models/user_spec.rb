@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
       expect(user.roles.count).to eq(1)
     end
 
-    it 'does not existing role' do
+    it 'does not add not vaild role' do
       user = User.create
       user.add_role('choosen')
       expect(user.roles.count).to eq(0)

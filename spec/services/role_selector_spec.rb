@@ -11,7 +11,7 @@ RSpec.describe RoleSelector do
             service = RoleSelector.new
             expect { service.call([]) }.to broadcast(:none)
         end
-        Role::KINDS.each do |kind|
+        User::ROLE_KINDS.each do |kind|
             it 'broadcasts #{kind} role' do
                 service = RoleSelector.new
                 expect { service.call([kind]) }.to broadcast(kind.to_sym)

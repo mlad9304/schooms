@@ -1,15 +1,23 @@
 class User < ApplicationRecord
 
-    has_many :roles
-    
+    ROLE_KINDS = %w[
+        student
+        teacher
+        customer
+        administrator
+    ].freeze
+
+    serialize :roles, Array
+
     def add_role(role)
-        roles.create(kind: role)
-    rescue ActiveRecord::RecordNotUnique
-        nil
+        new_roles = roles.push(role).uniq
+        filtered_roles = new_roles.select { |r| ROLE_KINDS.include?(r) }
+        update(roles: filtered_roles)
     end
     
     def remove_role(role)
-        roles.where(kind: role).destroy_all
+        filtered_roles = roles.reject { |r| r == role }
+        update(roles: filtered_roles)
     end
 
     def full_name

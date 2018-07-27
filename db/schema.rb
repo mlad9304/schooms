@@ -10,18 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_13_074354) do
+ActiveRecord::Schema.define(version: 2018_07_27_212142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "roles", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "kind"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id", "kind"], name: "index_roles_on_user_id_and_kind", unique: true
-  end
 
   create_table "settings", force: :cascade do |t|
     t.string "var", null: false
@@ -38,6 +30,8 @@ ActiveRecord::Schema.define(version: 2018_07_13_074354) do
     t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "roles"
+    t.index ["roles"], name: "index_users_on_roles"
   end
 
 end
