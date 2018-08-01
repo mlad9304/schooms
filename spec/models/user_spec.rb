@@ -4,19 +4,19 @@ RSpec.describe User, type: :model do
 
   describe '#add_role' do
     it 'adds a new role' do
-      user = User.create
+      user = FactoryBot.create(:user)
       user.add_role('student')
       expect(user.roles.count).to eq(1)
     end
     it 'does not add already existing role' do
-      user = User.create
+      user = FactoryBot.create(:user)
       user.add_role('student')
       user.add_role('student')
       expect(user.roles.count).to eq(1)
     end
 
     it 'does not add not vaild role' do
-      user = User.create
+      user = FactoryBot.create(:user)
       user.add_role('choosen')
       expect(user.roles.count).to eq(0)
     end
@@ -25,7 +25,7 @@ RSpec.describe User, type: :model do
   describe '#remove_role' do
     context 'role exists for user' do
       it 'removes existing role' do
-        user = User.create
+        user = FactoryBot.create(:user)
         user.add_role('student')
         user.remove_role('student')
         expect(user.roles.count).to eq(0)
@@ -33,7 +33,7 @@ RSpec.describe User, type: :model do
     end
     context 'role does not exist for user' do
       it 'does nothing' do
-        user = User.create
+        user = FactoryBot.create(:user)
         user.remove_role('student')
         expect(user.roles.count).to eq(0)
       end
