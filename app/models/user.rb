@@ -4,7 +4,7 @@ class User < ApplicationRecord
     ROLE_KINDS = %w[
         student
         teacher
-        customer
+        custodian
         administrator
     ].freeze
 
@@ -19,6 +19,10 @@ class User < ApplicationRecord
     def remove_role(role)
         filtered_roles = roles.reject { |r| r == role }
         update(roles: filtered_roles)
+    end
+
+    def student?
+        roles.include?('student')
     end
 
     def full_name

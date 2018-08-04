@@ -39,6 +39,22 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '#student?' do
+    context 'when has student role' do
+      user = FactoryBot.create(:user)
+      user.add_role('student')
+      it 'returns true' do
+        expect(user.student?).to eq(true)
+      end
+    end
+    context 'when has no student role' do
+      user = FactoryBot.create(:user)
+      it 'returns false' do
+        expect(user.student?).to eq(false)
+      end
+    end
+  end
   
   describe '#full_name' do
     it 'returns full name of user' do

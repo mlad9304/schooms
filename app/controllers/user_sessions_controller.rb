@@ -8,7 +8,14 @@ class UserSessionsController < ApplicationController
 
   def create
     if @user = login(params[:iin], params[:password])
-      redirect_back_or_to(:users, notice: 'Login successful')
+      role_selector = RoleSelector.new
+      role_selector
+        .on(:multirole) { redirect_to multirole_path }
+        .on(:administrator) { redirect_to administrator_path }
+        .on(:student) { redirect_to student_path }
+        .on(:custodian) { redirect_to custodian_path }
+        .on(:none) { redirect_to no_role_path }
+      role_selector.call(@user.roles)
     else
       flash.now[:alert] = 'Login failed'
       render action: 'new'
