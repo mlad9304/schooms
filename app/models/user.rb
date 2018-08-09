@@ -24,6 +24,22 @@ class User < ApplicationRecord
     def student?
         roles.include?('student')
     end
+    
+    def teacher?
+        roles.include?('teacher')
+    end
+
+    def custodian?
+        roles.include?('custodian')
+    end
+
+    def administrator?
+        roles.include?('administrator')
+    end
+
+    def multirole?
+        roles.size > 1
+    end
 
     def full_name
         "#{first_name} #{last_name}"

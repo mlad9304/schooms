@@ -55,6 +55,78 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '#teacher?' do
+    context 'when has teacher role' do
+      user = FactoryBot.create(:user)
+      user.add_role('teacher')
+      it 'returns true' do
+        expect(user.teacher?).to eq(true)
+      end
+    end
+    context 'when has no teacher role' do
+      user = FactoryBot.create(:user)
+      it 'returns false' do
+        expect(user.teacher?).to eq(false)
+      end
+    end
+  end
+
+  describe '#custodian?' do
+    context 'when has custodian role' do
+      user = FactoryBot.create(:user)
+      user.add_role('custodian')
+      it 'returns true' do
+        expect(user.custodian?).to eq(true)
+      end
+    end
+    context 'when has no custodian role' do
+      user = FactoryBot.create(:user)
+      it 'returns false' do
+        expect(user.custodian?).to eq(false)
+      end
+    end
+  end
+
+  describe '#administrator?' do
+    context 'when has administrator role' do
+      user = FactoryBot.create(:user)
+      user.add_role('administrator')
+      it 'returns true' do
+        expect(user.administrator?).to eq(true)
+      end
+    end
+    context 'when has no administrator role' do
+      user = FactoryBot.create(:user)
+      it 'returns false' do
+        expect(user.administrator?).to eq(false)
+      end
+    end
+  end
+
+  describe '#multirole?' do
+    context 'when has several roles' do
+      user = FactoryBot.create(:user)
+      user.add_role('administrator')
+      user.add_role('teacher')
+      it 'returns true' do
+        expect(user.multirole?).to eq(true)
+      end
+    end
+    context 'when has one role' do
+      user = FactoryBot.create(:user)
+      user.add_role('administrator')
+      it 'returns false' do
+        expect(user.multirole?).to eq(false)
+      end
+    end
+    context 'when has no roles' do
+      user = FactoryBot.create(:user)
+      it 'returns false' do
+        expect(user.multirole?).to eq(false)
+      end
+    end
+  end
   
   describe '#full_name' do
     it 'returns full name of user' do
