@@ -88,18 +88,18 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#administrator?' do
-    context 'when has administrator role' do
+  describe '#admin?' do
+    context 'when has admin role' do
       user = FactoryBot.create(:user)
-      user.add_role('administrator')
+      user.add_role('admin')
       it 'returns true' do
-        expect(user.administrator?).to eq(true)
+        expect(user.admin?).to eq(true)
       end
     end
-    context 'when has no administrator role' do
+    context 'when has no admin role' do
       user = FactoryBot.create(:user)
       it 'returns false' do
-        expect(user.administrator?).to eq(false)
+        expect(user.admin?).to eq(false)
       end
     end
   end
@@ -107,7 +107,7 @@ RSpec.describe User, type: :model do
   describe '#multirole?' do
     context 'when has several roles' do
       user = FactoryBot.create(:user)
-      user.add_role('administrator')
+      user.add_role('admin')
       user.add_role('teacher')
       it 'returns true' do
         expect(user.multirole?).to eq(true)
@@ -115,7 +115,7 @@ RSpec.describe User, type: :model do
     end
     context 'when has one role' do
       user = FactoryBot.create(:user)
-      user.add_role('administrator')
+      user.add_role('admin')
       it 'returns false' do
         expect(user.multirole?).to eq(false)
       end
